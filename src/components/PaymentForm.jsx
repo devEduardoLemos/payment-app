@@ -38,7 +38,7 @@ const PaymentForm = ({ onPaymentSuccess }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Amount:</label>
+        <label>Valor:</label>
         <input
           type="range"
           min="0"
@@ -48,10 +48,10 @@ const PaymentForm = ({ onPaymentSuccess }) => {
           onChange={(e) => setAmount(e.target.value)}
           required
         />
-         <span> {amount}</span> {/* Real-time display of the amount */}
+         <span> R$ {amount}</span> {/* Real-time display of the amount */}
       </div>
       <div>
-        <label>Description:</label>
+        <label>Descrição:</label>
         <input
           type="text"
           value={description}
@@ -60,7 +60,7 @@ const PaymentForm = ({ onPaymentSuccess }) => {
         />
       </div>
       <button type="submit" disabled={loading}>
-        {loading ? 'Processing...' : 'Pay'}
+        {loading ? 'Processando...' : 'Pagar'}
       </button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>

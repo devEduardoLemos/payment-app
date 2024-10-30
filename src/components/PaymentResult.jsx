@@ -24,18 +24,18 @@ const PaymentResult = ({ paymentData }) => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(pix);
-      setCopySuccess('Copied!');
-      setTimeout(() => setCopySuccess(''), 2000); // Clear message after 2 seconds
+      setCopySuccess('Copiado!');
+      setTimeout(() => setCopySuccess(''), 10000); // Clear message after 2 seconds
     } catch (err) {
-      setCopySuccess('Failed to copy!');
+      setCopySuccess('Falha ao copiar!');
     }
   };
 
   return (
     <div className="PaymentResult" ref={resultRef}>
-      <h2>Payment Successful!</h2>
-      <p><strong>Amount:</strong> {amount}</p>
-      <p><strong>Description:</strong> {description}</p>
+      <h2>QRCODE Gerado!</h2>
+      <p><strong>Valor:</strong> {amount}</p>
+      <p><strong>Descrição:</strong> {description}</p>
       <p className='pixlabel'><strong>Pix copia e cola:</strong></p>
       <div className="pixcopypaste">
         <p>{pix}</p>
