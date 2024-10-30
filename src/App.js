@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+// src/App.js
 import './App.css';
+import React, { useState } from 'react';
+import PaymentForm from './components/PaymentFrom';
+import PaymentResult from './components/PaymentResult';
 
-function App() {
+const App = () => {
+  const [paymentData, setPaymentData] = useState(null);
+
+  const handlePaymentSuccess = (data) => {
+    setPaymentData(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Payment App</h1>
+      <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
+      <PaymentResult paymentData={paymentData} />
     </div>
   );
-}
+};
 
 export default App;
+
