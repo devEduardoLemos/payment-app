@@ -1,7 +1,6 @@
-// src/App.js
 import './App.css';
 import React, { useState } from 'react';
-import PaymentForm from './components/PaymentFrom';
+import PaymentForm from './components/PaymentForm';
 import PaymentResult from './components/PaymentResult';
 
 const App = () => {
@@ -15,10 +14,13 @@ const App = () => {
     <div className="App">
       <h1>Payment App</h1>
       <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
-      <PaymentResult paymentData={paymentData} />
+      {paymentData && (
+        <div>
+          <PaymentResult paymentData={paymentData} />
+        </div>
+      )}
     </div>
   );
 };
 
 export default App;
-
