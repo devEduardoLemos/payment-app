@@ -1,8 +1,21 @@
 // src/components/PaymentResult.js
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const PaymentResult = ({ paymentData }) => {
   const [copySuccess, setCopySuccess] = useState('');
+  const resultRef = useRef(null); //create a reference to paymentResult container
+
+  useEffect(() => {
+    if (paymentData && resultRef.current) {
+      // Scroll smoothly to the result
+      resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Adjust scroll position slightly after the initial scroll
+      setTimeout(() => {
+        window.scrollBy({ top: 250, left: 0, behavior: 'smooth' }); // Scroll 50px more down
+      }, 500); // Small delay to ensure smooth experience
+    }
+  }, [paymentData]); // Trigger effect whenever paymentData changes
 
   if (!paymentData) return null;
 
@@ -19,7 +32,7 @@ const PaymentResult = ({ paymentData }) => {
   };
 
   return (
-    <div className="PaymentResult">
+    <div className="PaymentResult" ref={resultRef}>
       <h2>Payment Successful!</h2>
       <p><strong>Amount:</strong> {amount}</p>
       <p><strong>Description:</strong> {description}</p>
