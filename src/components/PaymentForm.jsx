@@ -2,10 +2,37 @@
 import React, { useState } from 'react';
 
 const PaymentForm = ({ onPaymentSuccess }) => {
-  const [amount, setAmount] = useState(0);
+  const MAX_AMOUNT = parseFloat(process.env.REACT_APP_MAX_VALUE); // Maximum limit for range
+  const MIN_AMOUNT = parseFloat(process.env.REACT_APP_MIN_VALUE); // Minimum limit for range
+
+  const [amount, setAmount] = useState(MIN_AMOUNT);
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isEditingAmount, setIsEditingAmount] = useState(false);
+
+  
+  const handleAmountChange = (e) => {
+    const newValue = parseFloat(e.target.value);
+    setAmount(newValue);
+  };
+
+  const handleAmountClick = () => {
+    setIsEditingAmount(true); // Enable editing mode on click
+  };
+
+  const handleAmountInputChange = (e) => {
+    const inputAmount = parseFloat(e.target.value);
+    if (!isNaN(inputAmount)) {
+      // Check limits and adjust accordingly
+      const validatedAmount = Math.max(MIN_AMOUNT, Math.min(MAX_AMOUNT, inputAmount));
+      setAmount(validatedAmount);
+    }
+  };
+
+  const handleAmountInputBlur = () => {
+    setIsEditingAmount(false); // Exit editing mode on blur
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,12 +40,13 @@ const PaymentForm = ({ onPaymentSuccess }) => {
     setError(null);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/pay', {
+      const response = await fetch('https://api-justpay.gruposkip.com/pay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-api-key':process.env.REACT_APP_API_KEY
         },
-        body: JSON.stringify({ amount: parseFloat(amount), description }),
+        body: JSON.stringify({ pixkey:process.env.REACT_APP_PIX_KEY, amount: parseFloat(amount), description }),
       });
 
       if (!response.ok) {
@@ -26,7 +54,7 @@ const PaymentForm = ({ onPaymentSuccess }) => {
       }
 
       const data = await response.json();
-      console.log(data)
+      //console.log(data)
       onPaymentSuccess(data);
     } catch (err) {
       setError(err.message);
@@ -41,14 +69,28 @@ const PaymentForm = ({ onPaymentSuccess }) => {
         <label>Valor:</label>
         <input
           type="range"
-          min="0"
-          max="200"
+          min={MIN_AMOUNT}
+          max={MAX_AMOUNT}
           step="0.01"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={handleAmountChange}
           required
         />
-         <span> R$ {amount}</span> {/* Real-time display of the amount */}
+        {/* Toggle between text display and input field for editing */}
+        {isEditingAmount ? (
+          <input
+            type="number"
+            value={amount}
+            onChange={handleAmountInputChange}
+            onBlur={handleAmountInputBlur}
+            autoFocus
+            className="amount-input"
+          />
+        ) : (
+          <span onClick={handleAmountClick} style={{ cursor: 'pointer', marginLeft: '10px' }}>
+            R$ {amount.toFixed(2)}
+          </span>
+          )}
       </div>
       <div>
         <label>Descrição:</label>

@@ -127,3 +127,26 @@ p {
 .pixlabel{
   margin-top: 10px;
 }
+
+/* Style for the editable amount input */
+.amount-input {
+  width: 80px;
+  padding: 5px;
+  margin-left: 10px;
+  border: 1px solid #7b1fa2; /* Deep purple border */
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #4a148c; /* Dark purple text color */
+  background-color: #f3e5f5; /* Light purple background */
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Style when the input is focused */
+.amount-input:focus {
+  border-color: #6a1b9a; /* Darker purple on focus */
+  box-shadow: 0 0 4px rgba(106, 27, 154, 0.4); /* Purple shadow */
+}
+

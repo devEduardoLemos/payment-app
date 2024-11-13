@@ -34,7 +34,7 @@ const PaymentResult = ({ paymentData }) => {
   return (
     <div className="PaymentResult" ref={resultRef}>
       <h2>QRCODE Gerado!</h2>
-      <p><strong>Valor:</strong> {amount}</p>
+      <p><strong>Valor:</strong>R$ {amount}</p>
       <p><strong>Descrição:</strong> {description}</p>
       <p className='pixlabel'><strong>Pix copia e cola:</strong></p>
       <div className="pixcopypaste">
