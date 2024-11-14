@@ -12,7 +12,7 @@ const PaymentResult = ({ paymentData }) => {
 
       // Adjust scroll position slightly after the initial scroll
       setTimeout(() => {
-        window.scrollBy({ top: 250, left: 0, behavior: 'smooth' }); // Scroll 50px more down
+        window.scrollBy({ top: 220, left: 0, behavior: 'smooth' }); // Scroll 50px more down
       }, 500); // Small delay to ensure smooth experience
     }
   }, [paymentData]); // Trigger effect whenever paymentData changes

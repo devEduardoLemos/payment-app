@@ -27,17 +27,34 @@ const PaymentForm = ({ onPaymentSuccess }) => {
     setIsEditingAmount(true); // Enable editing mode on click
   };
 
+  // Handle input change, replace leading zero with new value if necessary
   const handleAmountInputChange = (e) => {
-    const inputAmount = parseFloat(e.target.value);
+    const inputValue = e.target.value;
+
+    // If the input is empty, set amount to 0
+    if (inputValue === "") {
+      setAmount(0);
+      return;
+    }
+
+    // Parse the input as a float
+    const inputAmount = parseFloat(inputValue);
+
     if (!isNaN(inputAmount)) {
-      // Check limits and adjust accordingly
-      const validatedAmount = Math.max(MIN_AMOUNT, Math.min(MAX_AMOUNT, inputAmount));
-      setAmount(validatedAmount);
+      // If the current amount is 0, replace it with the new input amount
+      if (amount === 0 && inputValue !== "0") {
+        setAmount(parseFloat(inputValue)); // Replace the leading 0
+      } else {
+        setAmount(inputAmount); // Set the new amount normally
+      }
     }
   };
 
+  // Validate and correct the value to within range on blur
   const handleAmountInputBlur = () => {
-    setIsEditingAmount(false); // Exit editing mode on blur
+    const validatedAmount = Math.max(MIN_AMOUNT, Math.min(MAX_AMOUNT, amount));
+    setAmount(validatedAmount); // Correct the value to min or max if out of range
+    setIsEditingAmount(false); // Exit editing mode
   };
 
   const handleSubmit = async (e) => {
@@ -129,6 +146,7 @@ const PaymentForm = ({ onPaymentSuccess }) => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            maxLength={123}
             required
             className="descricao-input"
             placeholder=""

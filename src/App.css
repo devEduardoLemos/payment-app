@@ -224,6 +224,18 @@ p {
   border-bottom: 1px solid #000; /* Darker underline on focus */
 }
 
+/* Hide up/down arrows on input[type="number"] for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .round-image {
   width: 200px;
   height: 200px;
