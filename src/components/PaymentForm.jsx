@@ -15,6 +15,12 @@ const PaymentForm = ({ onPaymentSuccess }) => {
   const handleAmountChange = (e) => {
     const newValue = parseFloat(e.target.value);
     setAmount(newValue);
+
+    // Calculate the fill percentage based on the slider's current value
+    const fillPercentage = ((newValue - MIN_AMOUNT) / (MAX_AMOUNT - MIN_AMOUNT)) * 100;
+
+    // Update the background style for the filling effect
+    e.target.style.background = `linear-gradient(to right, blue ${fillPercentage}%, rgb(171, 142, 209) ${fillPercentage}%)`;
   };
 
   const handleAmountClick = () => {
@@ -64,48 +70,78 @@ const PaymentForm = ({ onPaymentSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Valor:</label>
-        <input
-          type="range"
-          min={MIN_AMOUNT}
-          max={MAX_AMOUNT}
-          step="0.01"
-          value={amount}
-          onChange={handleAmountChange}
-          required
-        />
-        {/* Toggle between text display and input field for editing */}
-        {isEditingAmount ? (
+    <div className='conteiner'>
+
+      <img 
+      src="./images/justpay.png" 
+      alt=""
+      className='round-image' 
+      />
+
+      <form onSubmit={handleSubmit}>
+        <div className='title'>
+          <p>Escolha o valor que considera justo e<br /> possível de pagar:</p>
+        </div>
+        <div>
           <input
-            type="number"
+            type="range"
+            min={MIN_AMOUNT}
+            max={MAX_AMOUNT}
+            step="0.01"
             value={amount}
-            onChange={handleAmountInputChange}
-            onBlur={handleAmountInputBlur}
-            autoFocus
-            className="amount-input"
+            onChange={handleAmountChange}
+            required
+            className="slider"
           />
-        ) : (
-          <span onClick={handleAmountClick} style={{ cursor: 'pointer', marginLeft: '10px' }}>
-            R$ {amount.toFixed(2)}
-          </span>
-          )}
-      </div>
-      <div>
-        <label>Descrição:</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Processando...' : 'Pagar'}
-      </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+          <div className="inputmaxmin">
+            <span>{MIN_AMOUNT}</span>
+            <span>{MAX_AMOUNT}</span>
+          </div>
+          
+          {/* Toggle between text display and input field for editing */}
+          <div className="conteiner-valor">
+            <div className="conteiner-label">
+              <label className='label-valor'>Valor</label>
+            </div>
+          
+            {isEditingAmount ? (
+              <input
+                type="number"
+                value={amount}
+                onChange={handleAmountInputChange}
+                onBlur={handleAmountInputBlur}
+                autoFocus
+                className="amount-input"
+              />
+            ) : (
+              <span className='span-valor' onClick={handleAmountClick}>
+                R$ {amount.toFixed(2)}
+                
+              </span>
+            )}
+            <i className="fas fa-pencil-alt edit-icon"></i>
+          </div>
+        </div>
+        <div className='conteiner-descricao'>
+          <div className='conteiner-label'>
+            <label>Descrição (opcional)</label>
+          </div>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className="descricao-input"
+            placeholder=""
+            rows="2" // Adjust rows as needed
+          />
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Processando...' : 'Pagar'}
+        </button>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      </form>
+
+    </div>
   );
 };
 

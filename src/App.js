@@ -12,7 +12,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>JustPay App</h1>
       <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
       {paymentData && (
         <div>
