@@ -92,7 +92,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className='conteiner'>
+    <div className='container'>
 
       <img 
       src="./images/justpay.png" 

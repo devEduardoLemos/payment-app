@@ -5,7 +5,7 @@
     padding: 0px 20px 10px 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 650px;
     width: 100%;
     margin-top: 20px;
     display: flex;
@@ -23,20 +23,25 @@
   }
   
   .pixcopypaste {
+    display: flex;
+    flex-direction: column;
     word-break: break-word;
     overflow-wrap: anywhere;
     background-color: #f0f0f0;
-    padding: 5px;
+    padding: 0px 10px 5px 10px;
     border-radius: 8px;
     text-align: center;
-    width: 80%;
-    max-width: 350px;
-    margin-top: 2px;
+    width: 93%;
+    /* max-width: 350px; */
+    /* margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px; */
     position: relative;
   }
   
   .pixcopypaste button {
     margin-top: 5px;
+    margin-bottom: 5px;
     padding: 8px 12px;
     background-color: #4caf50;
     color: white;
@@ -48,6 +53,16 @@
   
   .pixcopypaste button:hover {
     background-color: #45a049;
+  }
+
+  .pixcopypaste label{
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+    opacity: 0.6;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-top: 5px;
   }
   
   .copy-message {
@@ -63,4 +78,102 @@
   .pixlabel {
     margin-top: 10px;
   }
+
+  .round-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+/* QRCodeInstructions.css */
+
+.qr-instructions-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0px 0px 0px;
+    max-width: 800px;
+    margin: auto;
+  }
   
+  .qr-code img {
+    width: 300px;
+    height: 300px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    
+  }
+  
+  .instruction {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icon {
+    font-size: 20px;
+    color: #333;
+    opacity: 0.6;
+  }
+  
+  .instruction p {
+    font-size: 12px;
+    text-align: left;
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .container-value-description {
+    display: flex;
+    justify-content: space-between; /* Ensures left and right alignment */
+    align-items: flex-start; /* Align items to the top */
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 100%; /* Full width of the container */
+  }
+
+.value, .description{
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.value label{
+    opacity: .6;
+}
+
+.description label{
+    opacity: .6;
+}
+
+/* New Payment button style */
+.new-payment-button {
+    width: 96%;
+    /* max-width: 400px; */
+    padding: 10px 10px 10px 10px;
+    color: #007bff; /* Blue color for the text */
+    border: 1px solid #007bff; /* Blue border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .new-payment-button:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+  }
+
