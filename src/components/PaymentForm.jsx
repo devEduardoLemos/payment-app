@@ -1,7 +1,9 @@
 // src/components/PaymentForm.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { usePayment } from '../context/PaymentContext';
 
-const PaymentForm = ({ onPaymentSuccess }) => {
+const PaymentForm = () => {
   const MAX_AMOUNT = parseFloat(process.env.REACT_APP_MAX_VALUE); // Maximum limit for range
   const MIN_AMOUNT = parseFloat(process.env.REACT_APP_MIN_VALUE); // Minimum limit for range
 
@@ -10,8 +12,10 @@ const PaymentForm = ({ onPaymentSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isEditingAmount, setIsEditingAmount] = useState(false);
+  const navigate = useNavigate();
+  const { setPaymentData } = usePayment();
 
-  
+ 
   const handleAmountChange = (e) => {
     const newValue = parseFloat(e.target.value);
     setAmount(newValue);
@@ -78,7 +82,8 @@ const PaymentForm = ({ onPaymentSuccess }) => {
 
       const data = await response.json();
       //console.log(data)
-      onPaymentSuccess(data);
+      setPaymentData(data);
+      navigate('/payment-result');
     } catch (err) {
       setError(err.message);
     } finally {

@@ -1,7 +1,9 @@
 // src/components/PaymentResult.js
 import React, { useEffect, useRef, useState } from 'react';
+import { usePayment } from '../context/PaymentContext';
 
-const PaymentResult = ({ paymentData }) => {
+const PaymentResult = () => {
+  const { paymentData } = usePayment();
   const [copySuccess, setCopySuccess] = useState('');
   const resultRef = useRef(null); //create a reference to paymentResult container
 

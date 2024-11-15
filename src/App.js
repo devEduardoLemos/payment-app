@@ -1,25 +1,17 @@
-import './App.css';
-import React, { useState } from 'react';
-import PaymentForm from './components/PaymentForm';
-import PaymentResult from './components/PaymentResult';
+import './styles/App.css';
+import './styles/PaymentForm.css';
+import './styles/PaymentResult.css';
+import AppRouter from './router/AppRouter';
+import { PaymentProvider } from './context/PaymentContext';
 
 const App = () => {
-  const [paymentData, setPaymentData] = useState(null);
-
-  const handlePaymentSuccess = (data) => {
-    setPaymentData(data);
-  };
-
+  
   return (
-    <div className="App">
-      <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
-      {paymentData && (
-        <div>
-          <PaymentResult paymentData={paymentData} />
-        </div>
-      )}
-    </div>
+    <PaymentProvider>
+      <AppRouter />
+    </PaymentProvider>
   );
+
 };
 
 export default App;
