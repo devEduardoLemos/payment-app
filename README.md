@@ -1,28 +1,26 @@
-Here’s a `README.md` file template with instructions on how to use and deploy your React application on HostGator.
 
----
-
-```markdown
 # Payment App
 
-This is a React-based payment application that allows users to make payments, see the payment results, and copy payment details. This app includes a payment form with custom input handling, environment variable configuration, and deployment instructions.
+This is a React-based payment application that allows users to make payments using PIX, and copy payment details. This app includes a payment form with custom input handling, environment variable configuration, and deployment instructions.
+
+The app can be seeing running in here: https://justpay.gruposkip.com/ 
 
 ## Features
 - Real-time amount adjustment with range slider and manual input
 - Payment submission with custom API key header
-- Displays payment result with Pix code and QR code
+- Displays payment method with Pix code and QR code
 - Option to copy the Pix code with one click
 
 ## Prerequisites
 - Node.js and npm installed
 - An API endpoint to handle payment requests
-- HostGator hosting account (for deployment)
+- Hosting account (for deployment)
 
 ## Installation
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/devEduardoLemos/payment-app.git
    cd your-repo-name
    ```
 
@@ -31,7 +29,7 @@ This is a React-based payment application that allows users to make payments, se
    npm install
    ```
 
-3. Create a `.env` file in the root directory:
+3. Create a `.env` file in the root directory, with the content:
    ```plaintext
    REACT_APP_API_KEY=your-api-key-value
    ```
@@ -48,7 +46,7 @@ This is a React-based payment application that allows users to make payments, se
 - **Submit Payment**: Click "Pay" to submit the payment.
 - **Copy Pix Code**: Click the "Copy Pix Code" button to copy the Pix code to the clipboard.
 
-## Deployment to HostGator
+## Deployment to Hosting
 
 Follow these steps to deploy your application to HostGator:
 
@@ -61,9 +59,9 @@ npm run build
 
 This will create a `build` folder containing optimized static files.
 
-### Step 2: Upload to HostGator
+### Step 2: Upload to your hosting service
 
-1. **Log in to HostGator**: Access your cPanel dashboard on HostGator.
+1. **Log in to the hosting**: Access your dashboard panel.
 2. **File Manager**: Go to the **File Manager** and open the `public_html` folder.
 3. **Upload Build Files**:
    - Compress the `build` folder into a `.zip` file and upload it.
@@ -91,19 +89,10 @@ If your app uses client-side routing, add a `.htaccess` file in `public_html` wi
 
 Visit your domain (e.g., `https://yourdomain.com`) to confirm that the app is running as expected.
 
-## Environment Variables
 
-To use sensitive information like API keys securely:
-- Add them to the `.env` file locally, prefixed with `REACT_APP_` (e.g., `REACT_APP_API_KEY`).
-- HostGator doesn’t support environment variables for frontend apps, so consider using serverless functions or a backend to manage sensitive data.
-
----
 
 ## License
 
 This project is licensed under the MIT License.
-```
 
----
 
-This `README.md` provides clear instructions for using, configuring, and deploying the app. Replace placeholder links and values (e.g., GitHub repository URL, API key) with actual details before publishing. Let me know if you’d like additional customization!
