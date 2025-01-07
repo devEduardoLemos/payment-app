@@ -5,6 +5,17 @@ This is a React-based payment application that allows users to make payments usi
 
 The app can be seeing running in here: https://justpay.gruposkip.com/ 
 
+
+
+<a href="public/images/tela1.png" target="_blank">
+    <img src="public/images/tela1.png" alt="Screenshot of Tela 1" width="150">
+</a>
+<a href="public/images/tela2_.png" target="_blank">
+    <img src="public/images/tela2_.png" alt="Screenshot of Tela 2" width="140">
+</a>
+
+
+
 ## Features
 - Real-time amount adjustment with range slider and manual input
 - Payment submission with custom API key header
