@@ -9,6 +9,7 @@ const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<PaymentForm />} />
+        <Route path="/cajuvalley" element={<PaymentForm />} />
         <Route path="/payment-result" element={<PaymentResult />} />
       </Routes>
     </Router>
